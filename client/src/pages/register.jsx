@@ -14,8 +14,11 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:1111/api/register";
-      const { data: res } = await axios.post(url, data);
+      const url = "http://localhost:1111/api/auth/register";
+      const res = await axios.post(url, data);
+      console.log(res.data);
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("name", res.data.name);
       enqueueSnackbar("Registration Successfull", {
         variant: "success",
         autoHideDuration: 3000, // Duration in milliseconds
@@ -23,7 +26,8 @@ function Register() {
           style: { background: "#4caf50", color: "#fff" }, // Customize snackbar style
         },
       });
-      console.log(res);
+      window.location = "/";
+
       navigate("/home");
     } catch (error) {
       console.log(error);
