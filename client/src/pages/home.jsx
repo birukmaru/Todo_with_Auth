@@ -2,8 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
 
-function Home(props) {
-  const { name } = props;
+function Home() {
+  const name = localStorage.getItem("name");
+
   const [data, setData] = useState({ task: "" });
   const [tasks, setTasks] = useState([]);
   const [editedId, setEditedId] = useState(null);

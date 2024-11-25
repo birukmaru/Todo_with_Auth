@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
 
 function Login() {
-  const navigate = useNavigate();
   const [data, setData] = useState({ name: "", password: "" });
   const [isObsecure, setIsObsecure] = useState(true);
   const { enqueueSnackbar } = useSnackbar();
@@ -22,7 +21,7 @@ function Login() {
       localStorage.setItem("name", res.data.name);
 
       enqueueSnackbar("User Sign In successfully", { variant: "success" });
-      // navigate("/home");
+
       window.location = "/";
     } catch (error) {
       console.log(error.response.data);
